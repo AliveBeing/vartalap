@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
-import ChatList from "./Chatlist/ChatList.jsx";
+import React from "react";
+import ChatList from "./Chatlist/ChatList";
+import Chat from "./Chat/Chat";
 import Empty from "./Empty";
 import { onAuthStateChanged } from "firebase/auth";
 import { firebaseAuth } from "@/utils/FirebaseConfig.js";
@@ -46,8 +47,9 @@ function Main() {
   return (
     <>
       <div className="grid grid-cols-main h-screen w-screen max-h-screen max-w-screen">
-        <ChatList/>
-        <Empty />
+        <ChatList />
+        {/* <Empty /> */}
+        <Chat />
       </div>
     </>
   );

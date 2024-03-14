@@ -4,14 +4,14 @@ import { getAuth } from "firebase/auth";
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBLOz64gpHbbzrfjGc4wOsgz0fjCi116Rg",
-  authDomain: "vartalap-6250b.firebaseapp.com",
-  projectId: "vartalap-6250b",
-  storageBucket: "vartalap-6250b.appspot.com",
-  messagingSenderId: "531340121918",
-  appId: "1:531340121918:web:8aa2b25ad0cabfef7d7e6f",
-  measurementId: "G-MEWHYFB4J0"
-  };
+  apiKey: "AIzaSyCt2vNEl95O8YfEd6xDvUCRdTV6iTp1PsY",
+  authDomain: "vartalap-41e11.firebaseapp.com",
+  projectId: "vartalap-41e11",
+  storageBucket: "vartalap-41e11.appspot.com",
+  messagingSenderId: "427199409817",
+  appId: "1:427199409817:web:6cc577d25d9f1023629208",
+  measurementId: "G-E8KVGT43PC"
+};
 
   const app = initializeApp(firebaseConfig);
   export const firebaseAuth= getAuth(app);
