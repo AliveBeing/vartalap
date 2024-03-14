@@ -18,7 +18,7 @@ function onboarding() {
     if (!newUser && !userInfo?.email) router.push("/login");
     else if (!newUser && userInfo?.email) router.push("/");
   }, [newUser, userInfo, router]);
-  const onboardUserHandler = async () => {
+  const onboardUserHandler = async (req, res) => {
     if (validateDetails()) {
       const email = userInfo.email;
       try {
@@ -36,7 +36,7 @@ function onboarding() {
           dispatch({
             type: reducerCases.SET_USER_INFO,
             userInfo: {
-              id:data.id,
+              id: data.user.id,
               name,
               email,
               profileImage: image,
@@ -46,7 +46,7 @@ function onboarding() {
           router.push("/");
         }
       } catch (err) {
-        console.log(err.res.data);
+        console.log(err);
       }
     }
   };
@@ -59,7 +59,13 @@ function onboarding() {
   return (
     <div className="bg-panel-header-background h-screen w-screen text-white flex flex-col items-center justify-center">
       <div className="flex items-center justify-center gap-2">
-        <Image src="/whatsapp.gif" alt="vartalap" height={300} width={300} />
+        <Image
+          src="/whatsapp.gif"
+          alt="vartalap"
+          priority
+          height={300}
+          width={300}
+        />
         <span className="text-7xl mb-10">Vartalap</span>
       </div>
       <h2 className="text-3xl">Create your Profile</h2>

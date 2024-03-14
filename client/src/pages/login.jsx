@@ -46,7 +46,7 @@ function login() {
             email,
             profilePicture: profileImage,
             status,
-          } = data;
+          } = data.data;
           dispatch({
             type: reducerCases.SET_USER_INFO,
             userInfo: {
@@ -68,7 +68,7 @@ function login() {
   return (
     <div className="flex justify-center items-center bg-panel-header-background h-screen w-screen flex-col gap-6">
       <div className="flex items-center justify-center gap-2 text-white">
-        <Image src="/whatsapp.gif" alt="Whatsapp" height={300} width={300} />
+        <Image priority src="/whatsapp.gif" alt="Whatsapp" height={300} width={300} />
         <span className="text-white text-7xl mb-10">Vartalap</span>
       </div>
       <button

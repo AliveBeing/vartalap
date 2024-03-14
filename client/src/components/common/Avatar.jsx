@@ -15,7 +15,7 @@ function Avatar({ type, image, setImage }) {
   });
   const [grabPhoto, setGrabPhoto] = useState(false);
   const [showPhotoLibrary, setShowPhotoLibrary] = useState(false);
-  const [showCapturePhoto,setShowCapturePhoto]=useState(false);
+  const [showCapturePhoto, setShowCapturePhoto] = useState(false);
   const showContextMenu = (e) => {
     e.preventDefault();
     setContextMenuCooordinates({ x: e.pageX, y: e.pageY });
@@ -33,10 +33,18 @@ function Avatar({ type, image, setImage }) {
     }
   }, [grabPhoto]);
   const contextMenuOptions = [
-    { name: "Take Photo", callback: () => {
-      setShowCapturePhoto(true);
-    } },
-    { name: "Change from Library", callback: () => {setShowPhotoLibrary(true)} },
+    {
+      name: "Take Photo",
+      callback: () => {
+        setShowCapturePhoto(true);
+      },
+    },
+    {
+      name: "Change from Library",
+      callback: () => {
+        setShowPhotoLibrary(true);
+      },
+    },
     {
       name: "Upload Photo",
       callback: () => {
@@ -100,7 +108,14 @@ function Avatar({ type, image, setImage }) {
               </span>
             </div>
             <div className="flex items-center justify-center h-60 w-60">
-              <Image src={image} alt="avatar" className="rounded-full" fill />
+              <Image
+                src={image}
+                alt="avatar"
+                priority
+                className="rounded-full"
+                height={240}
+                width={240}
+              />
             </div>
           </div>
         )}
@@ -113,12 +128,9 @@ function Avatar({ type, image, setImage }) {
           setContextMenu={setIsContextMenuVisible}
         />
       )}
-      {
-        showCapturePhoto && <CapturePhoto
-          setImage={setImage}
-          hide={setShowCapturePhoto}
-        />
-      }
+      {showCapturePhoto && (
+        <CapturePhoto setImage={setImage} hide={setShowCapturePhoto} />
+      )}
       {showPhotoLibrary && (
         <PhotoLibrary
           setImage={setImage}
