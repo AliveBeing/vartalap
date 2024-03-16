@@ -56,7 +56,6 @@ function Main() {
         <ChatList />
         {currentChatUser ? <Chat /> : <Empty />}
         {/* <Empty /> */}
-        <Chat />
       </div>
     </>
   );
