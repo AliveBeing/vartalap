@@ -6,6 +6,7 @@ import { BiSearchAlt2 } from "react-icons/bi";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { MdCall } from "react-icons/md";
 import { useStateProvider } from "@/context/StateContext";
+import { reducerCases } from "@/context/constants";
 
 function ChatHeader() {
   const [{userInfo,currentChatUser},dispatch]=useStateProvider();
@@ -21,7 +22,8 @@ function ChatHeader() {
       <div className="flex gap-6">
         <MdCall className="text-black  cursor-pointer text-xl" />
         <IoVideocam className="text-black  cursor-pointer text-xl" />
-        <BiSearchAlt2 className="text-black  cursor-pointer text-xl" />
+        <BiSearchAlt2 className="text-black  cursor-pointer text-xl" 
+        onClick={()=>dispatch({type:reducerCases.SET_MESSAGE_SEARCH})} />
         <BsThreeDotsVertical className="text-black  cursor-pointer text-xl" />
         
         
