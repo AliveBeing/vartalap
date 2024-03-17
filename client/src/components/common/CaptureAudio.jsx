@@ -205,6 +205,7 @@ const sendRecording = async () => {
         },
         fromSelf: true,
       });
+      hide();
     }
   } catch (err) {
     console.log(err);
