@@ -82,7 +82,7 @@ function Main() {
               const {data:{messages}} = await axios.get(
                 `${GET_MESSAGES_ROUTE}/${userInfo.id}/${currentChatUser.id}`
               );
-          dispatch({type:reducerCases.SET_MESSAGES,messages})
+          dispatch({type:reducerCases.SET_MESSAGES,messages});
          };
         if(currentChatUser?.id){
         getMessages()
