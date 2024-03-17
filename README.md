@@ -1,1 +1,1 @@
-Register issue remains.
+#All Issues Resolved.
