@@ -10,18 +10,18 @@ function ChatListHeader() {
     dispatch({type:reducerCases.SET_ALL_CONTACTS_PAGE});
   }
   return (
-    <div className="h-16 px-4 py-3 flex justify-between items-center">
+    <div className=" bg-slate-300 h-16 px-4 py-3 flex justify-between items-center">
       <div className="cursor-pointer">
-        <Avatar type="sm" image={userInfo?.profileImage} />
+        <Avatar type="sm"  image={userInfo?.profileImage} />
       </div>
       <div className="flex gap-6">
         <BsFillChatLeftTextFill
-          className="text-panel-header-icon cursor-pointer text-xl"
+          className="text-black cursor-pointer text-xl"
           title="New Chat"
           onClick={handleAllContactsPage}
         />
         <>
-          <BsThreeDotsVertical className="text-panel-header-icon cursor-pointer text-xl" />
+          <BsThreeDotsVertical className="text-black cursor-pointer text-xl" />
         </>
       </div>
     </div>

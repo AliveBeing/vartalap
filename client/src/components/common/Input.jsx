@@ -4,7 +4,7 @@ function Input({ name, state, setState, label = false }) {
   return (
     <div className="flex gap-1 flex-col">
       {label && (
-        <label htmlFor={name} className="text-teal-light text-lg px-1">
+        <label htmlFor={name} className="text-black font-semibold text-lg px-1">
           {name}
         </label>
       )}
@@ -14,7 +14,7 @@ function Input({ name, state, setState, label = false }) {
           name={name}
           value={state}
           onChange={(e) => setState(e.target.value)}
-          className="bg-input-background text-start focus:outline-none text-white h-10 rounded-lg px-5 py-4 w-full"
+          className="bg-slate-200 text-start focus:border-2 border-black text-black h-10 rounded-lg px-5 py-4 w-full"
         />
       </div>
     </div>

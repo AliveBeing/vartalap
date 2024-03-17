@@ -12,12 +12,20 @@ function onboarding() {
   const [{ userInfo, newUser }] = useStateProvider();
   const [name, setName] = useState(userInfo?.name || "");
   const [about, setAbout] = useState("");
-  const [image, setImage] = useState("/default_avatar.png");
+  const [image, setImage] = useState("/default_avatar.jpg");
+  const [registered,setRegistered]=useState(false);
 
   useEffect(() => {
     if (!newUser && !userInfo?.email) router.push("/login");
     else if (!newUser && userInfo?.email) router.push("/");
   }, [newUser, userInfo, router]);
+
+  useEffect(()=>{
+    if(registered){
+      router.push('/')
+    }
+  },[router,registered])
+
   const onboardUserHandler = async (req, res) => {
     if (validateDetails()) {
       const email = userInfo.email;
@@ -49,6 +57,7 @@ function onboarding() {
         console.log(err);
       }
     }
+    setRegistered(true);
   };
   const validateDetails = () => {
     if (name.length < 3) {
@@ -57,34 +66,41 @@ function onboarding() {
     return true;
   };
   return (
-    <div className="bg-panel-header-background h-screen w-screen text-white flex flex-col items-center justify-center">
-      <div className="flex items-center justify-center gap-2">
-        <Image
-          src="/whatsapp.gif"
-          alt="vartalap"
-          priority
-          height={300}
-          width={300}
-        />
-        <span className="text-7xl mb-10">Vartalap</span>
-      </div>
-      <h2 className="text-3xl">Create your Profile</h2>
-      <div className="flex gap-6 mt-6">
-        <div className="flex flex-col items-center justify-center mt-5 gap-6">
-          <Input name="Display Name" state={name} setState={setName} label />
-          <Input name="About" state={about} setState={setAbout} label />
+    <div className="relative flex justify-center">
+      <div className="bg-chat-background flex justify-center items-center bg-slate-300 h-screen w-screen flex-col gap-6 absolute blur-[2px]"></div>
+      <div className="z-5p-[20px] text-white flex flex-col items-center justify-center absolute mt-[2vh]">
+        <div className="flex items-center justify-center gap-2">
+          <Image
+            src="/favicon.png"
+            alt="vartalap"
+            priority
+            height={300}
+            width={300}
+          />
+          <span className="text-7xl mb-10 text-black font-semibold blur-[1px]">
+            Vartalap
+          </span>
         </div>
-        <div>
-          <Avatar type="xl" image={image} setImage={setImage} />
+        <h2 className="text-4xl font-semibold text-black blur-[1px]">
+          Create your Profile
+        </h2>
+        <div className="flex gap-6 mt-6">
+          <div className="flex flex-col items-center justify-center mt-5 gap-6">
+            <Input name="Display Name" state={name} setState={setName} label />
+            <Input name="About" state={about} setState={setAbout} label />
+          </div>
+          <div>
+            <Avatar type="xl" image={image} setImage={setImage} />
+          </div>
         </div>
-      </div>
-      <div className=" flex items-center justify-center">
-        <button
-          className="flex items-center justify-center gap-7 bg-search-input-container-background p-5 rounded-lg"
-          onClick={onboardUserHandler}
-        >
-          Create Profile
-        </button>
+        <div className=" flex items-center justify-center mt-[4vh]">
+          <button
+            className="flex items-center justify-center gap-7 bg-search-input-container-background p-5 rounded-lg text-[20px] font-semibold blur-[0.25px] hover:blur-[0px]"
+            onClick={onboardUserHandler}
+          >
+            Create Profile
+          </button>
+        </div>
       </div>
     </div>
   );

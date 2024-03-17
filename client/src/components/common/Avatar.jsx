@@ -21,6 +21,7 @@ function Avatar({ type, image, setImage }) {
     setContextMenuCooordinates({ x: e.pageX, y: e.pageY });
     setIsContextMenuVisible(true);
   };
+
   useEffect(() => {
     if (grabPhoto) {
       const data = document.getElementById("photo-picker");
@@ -54,7 +55,7 @@ function Avatar({ type, image, setImage }) {
     {
       name: "Remove Photo",
       callback: () => {
-        setImage("default_avatar.png");
+        setImage("default_avatar.jpg");
       },
     },
   ];
@@ -63,19 +64,20 @@ function Avatar({ type, image, setImage }) {
     const reader = new FileReader();
     const data = document.createElement("img");
     reader.onload = (e) => {
-      data.src = e.target.result;
+      data.src =e.target.result;
       data.setAttribute("data-src", e.target.result);
     };
     reader.readAsDataURL(file);
     setTimeout(() => {
       setImage(data.src);
     }, 100);
+
   };
   return (
     <>
       <div className="flex items-center justify-center">
         {type === "sm" && (
-          <div className="relative h-10 w-10">
+          <div className="relative h-10 w-10 ">
             <Image src={image} alt="avatar" className="rounded-full" fill />
           </div>
         )}
@@ -91,14 +93,14 @@ function Avatar({ type, image, setImage }) {
             onMouseLeave={() => setHover(false)}
           >
             <div
-              className={`z-10 bg-photopicker-overlay-background h-60 w-60 absolute top-0 left-0 flex items-center rounded-full justify-center flex-col text-center gap-2 ${
+              className={`z-10 bg-photopicker-overlay-background opacity-70 h-60 w-60 absolute top-0 left-0 flex items-center rounded-full justify-center flex-col text-center gap-2 ${
                 hover ? "visible" : "hidden"
               }`}
               onClick={(e) => showContextMenu(e)}
               id="context-opener"
             >
               <FaCamera
-                className="text-2xl"
+                className="text-2xl text-black"
                 id="context-opener"
                 onClick={(e) => showContextMenu(e)}
               />

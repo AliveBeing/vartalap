@@ -10,3 +10,6 @@
 .custom-scrollbar::-webkit-scrollbar-thumb{
     background-color:#ffffff3b;
 }
+.bg-set{
+    background-image:url('/chat1.jpeg');
+}

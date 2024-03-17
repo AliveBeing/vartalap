@@ -66,18 +66,29 @@ function login() {
   };
 
   return (
-    <div className="flex justify-center items-center bg-panel-header-background h-screen w-screen flex-col gap-6">
-      <div className="flex items-center justify-center gap-2 text-white">
-        <Image priority src="/whatsapp.gif" alt="Whatsapp" height={300} width={300} />
-        <span className="text-white text-7xl mb-10">Vartalap</span>
+    <div className="relative flex justify-center">
+      <div className="bg-chat-background flex justify-center items-center bg-slate-300 h-screen w-screen flex-col gap-6 absolute blur-[2px]"></div>
+      <div className="z-10 pt-[25vh] flex flex-col justify-center items-center absolute ">
+        <div className="flex flex-row items-center justify-center gap-2 text-white">
+          <Image
+            priority
+            src="/favicon.png"
+            alt="Vartalap"
+            height={300}
+            width={300}
+          />
+          <span className="text-black font-semibold blur-[1px] text-7xl mb-10">
+            Vartalap
+          </span>
+        </div>
+        <button
+          className="flex bg-black items-center justify-center gap-7 border-black border-[2.5px] p-5 rounded-[15px] hover:opacity-100 blur-[1px]"
+          onClick={handleLogin}
+        >
+          <FcGoogle className="text-4xl" />
+          <span className="text-white font-semibold text-4xl ">Login with Google </span>
+        </button>
       </div>
-      <button
-        className="flex items-center justify-center gap-7 bg-search-input-container-background p-5 rounded-lg"
-        onClick={handleLogin}
-      >
-        <FcGoogle className="text-4xl" />
-        <span className="text-white text-4xl">Login with Google </span>
-      </button>
     </div>
   );
 }

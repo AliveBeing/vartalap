@@ -24,22 +24,22 @@ function ContactsList() {
   }, []);
   return (
     <div className="h-full flex flex-col">
-      <div className="h-14 flex-items-end px-3 py-4">
-        <div className="flex items-center gap-12 text-white">
+      <div className="bg-slate-200 h-14 flex-items-end px-3 py-4 ">
+        <div className="flex items-center gap-12 text-black">
           <BiArrowBack
             className=" cursor-pointer text-xl"
             onClick={() =>
               dispatch({ type: reducerCases.SET_ALL_CONTACTS_PAGE })
             }
           />
-          <span>New Chat</span>
+          <span className="font-semibold">New Chat</span>
         </div>
       </div>
-      <div className="bg-search-input-container-background h-full flex-auto overflow-auto custom-scrollbar">
-        <div className="flex py-3 items-center gap-3 h-14">
-          <div className="bg-panel-header-background  flex items-center gap-5 px-3 py-1 rounded-lg flex-grow mx-4">
+      <div className="bg-slate-200 h-full flex-auto overflow-auto custom-scrollbar">
+        <div className="bg-slate-200 flex py-3 items-center gap-3 h-14">
+          <div className="bg-slate-200 border-black border-2 flex items-center gap-5 px-3 py-1 rounded-lg flex-grow mx-4">
             <div>
-              <BiSearchAlt2 className="text-panel-header-icon cursor-pointer text-l" />
+              <BiSearchAlt2 className="text-black cursor-pointer text-lg" />
             </div>
             <div>
               <input
@@ -53,7 +53,7 @@ function ContactsList() {
         {Object.entries(allContacts).map(([initialLetter, userList]) => {
           return (
             <div key={Date.now() + initialLetter}>
-              <div className="text-teal-light pl-10 py-3">{initialLetter}</div>
+              <div className="text-black pl-10 py-3 border-b-2 border-slate-300  font-semibold">{initialLetter}</div>
               {userList.map((contact) => {
                 return <ChatListItem data={contact} isContactPage={true}  key={contact.id}/>;
               })}
