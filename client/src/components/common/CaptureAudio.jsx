@@ -166,6 +166,7 @@ function CaptureAudio({ hide }) {
           to: currentChatUser.id,
         },
       });
+<<<<<<< HEAD
       if (response.status == 201) {
         socket.current.emit("send-msg", {
           to: currentChatUser?.id,
@@ -182,6 +183,9 @@ function CaptureAudio({ hide }) {
       }
     } catch (err) {
       console.log(err);
+=======
+      hide();
+>>>>>>> dc207d6979129db7385d9ab81d2b0c2d8053c729
     }
   };
 
