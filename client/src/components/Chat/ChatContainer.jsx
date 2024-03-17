@@ -21,17 +21,18 @@ function ChatContainer() {
                     : "justify-end"
                 }`}
               >
+              {console.log()}
                 {message.type === "text" && (
                   <div
-                    className={`text-white px-2 py-[5px] tex-sm rounded-md flex gap-2 items-end max-w-[45%] ${
+                    className={`text-white px-2 py-[5px] text-sm rounded-md flex gap-2 items-end max-w-[45%] ${
                       message.senderId === currentChatUser.id
                         ? "bg-slate-600"
                         : "bg-slate-700"
                     }`}
                   >
-                    <span className="break-all">{message.message}</span>
-                    <div className="flex gap-1 items-end">
-                      <span className="text-bubble-meta text-[10px] pt-1 min-w-fit">
+                    <span className="break-all text-[15px] mr-[5px]">{message.message}</span>
+                    <div className="flex flex-row items-end justify-end">
+                      <span className="text-bubble-meta text-[10px] pb-0 ">
                         {calculateTime(message.createdAt)}
                       </span>
                       <span>
