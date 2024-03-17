@@ -22,17 +22,19 @@ export const onBoardUser = async (req, res, next) => {
   try {
     const { email, name, about, image: profilePicture } = req.body;
     if (!email || !name || !profilePicture) {
-      return res.send("Email,Name and Image are required");
+      return res.send("Email, Name, and Image are required");
     }
-    const prisma = getPrismaInstance();
+    const prisma = getPrismaInstance(); // Initialize prisma here
     await prisma.user.create({
       data: { email, name, about, profilePicture },
     });
+    const user = await prisma.user.findUnique({ where: { email } }); // Retrieve user after creation
     return res.json({ msg: "Success", status: true, user });
   } catch (err) {
     next(err);
   }
 };
+
 export const getAllUser = async (req, res, next) => {
   try {
     const prisma = getPrismaInstance();
@@ -43,18 +45,18 @@ export const getAllUser = async (req, res, next) => {
         email: true,
         name: true,
         profilePicture: true,
-        about:true,
+        about: true,
       },
     });
-    const usersGroupByIntialLetter={};
-    users.forEach((user)=>{
-      const intialLetter=user.name.charAt(0).toUpperCase();
-      if(!usersGroupByIntialLetter[intialLetter]){
-        usersGroupByIntialLetter[intialLetter]=[];
+    const usersGroupByInitialLetter = {};
+    users.forEach((user) => {
+      const initialLetter = user.name.charAt(0).toUpperCase();
+      if (!usersGroupByInitialLetter[initialLetter]) {
+        usersGroupByInitialLetter[initialLetter] = [];
       }
-      usersGroupByIntialLetter[intialLetter].push(user);
-    })
-    return res.status(200).send({users:usersGroupByIntialLetter});
+      usersGroupByInitialLetter[initialLetter].push(user);
+    });
+    return res.status(200).send({ users: usersGroupByInitialLetter });
   } catch (err) {
     next(err);
   }
