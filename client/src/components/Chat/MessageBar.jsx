@@ -9,12 +9,21 @@ import { FaMicrophone } from "react-icons/fa";
 import { ImAttachment } from "react-icons/im";
 import { MdSend } from "react-icons/md";
 import PhotoPicker from "../common/PhotoPicker";
+import dynamic from "next/dynamic";
+
+
+
+const CaptureAudio = dynamic(() => import("../common/CaptureAudio"),{
+  ssr:false,
+}) ;
 
 function MessageBar() {
   const [{ userInfo, currentChatUser, socket }, dispatch] = useStateProvider();
   const [message, setMessage] = useState("");
   const [showEmojiPicker, setShowEmojiPicker] = useState("false");
   const emojiPickerRef = useRef(null);
+
+  const [showAudioRecoder,setShowAudioRecoder] = useState(false);
   const [grabPhoto, setGrabPhoto] = useState(false);
 
   const photoPickerChange = async (e) => {
@@ -110,10 +119,14 @@ function MessageBar() {
   }, [grabPhoto]);
   return (
     <div className=" bg-slate-300 h-20 px-4 flex items-center gap-6 relative">
+      
+      {
+       !showAudioRecoder && (
       <>
+      
         <div className="flex gap-6">
           <BsEmojiSmile
-            className=" text-black cursor-pointer text-xl"
+            className=" text-black cursor-pointer text-2xl"
             title="Emoji"
             id="emoji-open"
             onClick={handleEmojiModal}
@@ -127,7 +140,7 @@ function MessageBar() {
             </div>
           )}
           <ImAttachment
-            className=" text-black cursor-pointer text-xl"
+            className=" text-black cursor-pointer text-2xl"
             title="Attach File"
             onClick={()=>setGrabPhoto(true)}
           />
@@ -142,19 +155,33 @@ function MessageBar() {
           />
         </div>
         <div className=" flex w-10 items-center justify-center">
+          
+
           <button>
-            <MdSend
-              className=" text-black cursor-pointer text-xl"
+          {
+            message.length ? (
+              <MdSend
+              className=" text-black cursor-pointer text-2xl"
               title="Send message"
               onClick={sendMessage}
             />
-          </button>
-          {/* <FaMicrophone
-            className=" text-white"
+            ) : (
+              <FaMicrophone
+            className=" text-black cursor-pointer text-2xl"
             title="Record"
-          /> */}
+            onClick={() => setShowAudioRecoder(true)}
+          />
+            )
+          }
+          </button>
+          
         </div>
       </>
+      ) 
+      }
+      {
+        showAudioRecoder && <CaptureAudio hide={setShowAudioRecoder} />
+      }
       {grabPhoto && <PhotoPicker onChange={photoPickerChange} />}
     </div>
   );

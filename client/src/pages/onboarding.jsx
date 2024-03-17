@@ -22,6 +22,7 @@ function onboarding() {
 
   useEffect(()=>{
     if(registered){
+      
       router.push('/')
     }
   },[router,registered])
@@ -52,11 +53,13 @@ function onboarding() {
             },
           });
           router.push("/");
+          //setRegistered(true);
         }
       } catch (err) {
         console.log(err);
       }
     }
+    //router.push("/");
     setRegistered(true);
   };
   const validateDetails = () => {
