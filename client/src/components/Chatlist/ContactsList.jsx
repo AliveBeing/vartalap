@@ -55,7 +55,7 @@ function ContactsList() {
             <div key={Date.now() + initialLetter}>
               <div className="text-black pl-10 py-3 border-b-2 border-slate-300  font-semibold">{initialLetter}</div>
               {userList.map((contact) => {
-                return <ChatListItem data={contact} isContactPage={true}  key={contact.id}/>;
+                return <ChatListItem data={contact} isContactsPage={true}  key={contact.id}/>;
               })}
             </div>
           );

@@ -179,6 +179,7 @@ function CaptureAudio({ hide }) {
           },
           fromSelf: true,
         });
+        hide();
       }
     } catch (err) {
       console.log(err);
