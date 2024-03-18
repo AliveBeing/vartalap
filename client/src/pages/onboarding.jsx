@@ -1,31 +1,29 @@
 import Avatar from "@/components/common/Avatar";
 import Input from "@/components/common/Input";
 import { useStateProvider } from "@/context/StateContext";
-import { ONBOARD_USER_ROUTE } from "@/utils/ApiRoutes";
+import { ONBOARD_USER_ROUTE,SET_NEW_USER,SET_USER_INFO } from "@/utils/ApiRoutes";
 import Image from "next/image";
 import { Router, useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { reducerCases } from "@/context/constants";
+
+
 
 function onboarding() {
   const router = useRouter();
-  const [{ userInfo, newUser }] = useStateProvider();
+  const [{ userInfo, newUser },dispatch] = useStateProvider();
   const [name, setName] = useState(userInfo?.name || "");
   const [about, setAbout] = useState("");
   const [image, setImage] = useState("/default_avatar.jpg");
-  const [registered,setRegistered]=useState(false);
+  
 
   useEffect(() => {
     if (!newUser && !userInfo?.email) router.push("/login");
     else if (!newUser && userInfo?.email) router.push("/");
   }, [newUser, userInfo, router]);
 
-  useEffect(()=>{
-    if(registered){
-      
-      router.push('/')
-    }
-  },[router,registered])
+  
 
   const onboardUserHandler = async (req, res) => {
     if (validateDetails()) {
@@ -53,14 +51,13 @@ function onboarding() {
             },
           });
           router.push("/");
-          //setRegistered(true);
+          
         }
       } catch (err) {
         console.log(err);
       }
     }
-    //router.push("/");
-    setRegistered(true);
+    
   };
   const validateDetails = () => {
     if (name.length < 3) {
